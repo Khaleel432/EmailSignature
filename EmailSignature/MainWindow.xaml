@@ -21,7 +21,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Button x:Name="MainWindowEditSignature_Button" Content="Edit Signature" Grid.Row="3" Grid.Column="2" Click="MainWindowEditSignature_Button_Click"/>
+        <Button x:Name="MainWindowEditSignature_Button" Content="New Signature" Grid.Row="3" Grid.Column="2" Click="MainWindowEditSignature_Button_Click"/>
 
     </Grid>
 </Window>
