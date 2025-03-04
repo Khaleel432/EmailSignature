@@ -1,4 +1,6 @@
-﻿namespace EmailSignature.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EmailSignature.Models
 {
 
     class EditSignatureModel
@@ -8,6 +10,7 @@
 
         public string Signature { get; set; }
 
+        [Key]
         public Guid UserID { get; set; }
 
         #endregion Fields

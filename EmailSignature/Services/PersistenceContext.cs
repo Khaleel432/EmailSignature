@@ -13,6 +13,16 @@ namespace EmailSignature.Services
 
         #endregion Fields
 
+        #region - - - - - - Methods - - - - - -
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var _DBConn = "Server=.;Database=EmailSignature;Trusted_Connection=True;TrustServerCertificate=True;";
+            optionsBuilder.UseSqlServer(_DBConn);
+        }
+
+        #endregion Methods
+
     }
 
 }

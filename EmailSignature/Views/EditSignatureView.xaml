@@ -7,8 +7,31 @@
         mc:Ignorable="d"
         Title="EditSignatureView" Height="450" Width="800">
     <Grid>
-        <Grid Grid.Row="5" Grid.Column="5"/>
-        <Button Content="Save Changes" Margin="46,123,653,272" Click="Button_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button x:Name="EditSignatureSaveChanges_Button" Content="Save Changes" Grid.Row="3" Grid.Column="2" Click="EditSignatureSaveChanges_Button_Click"/>
+        <Label x:Name="EditSignatureUserID_Label" Content="Label" Grid.Column="1" HorizontalAlignment="Center" Grid.ColumnSpan="3"/>
+        <Button x:Name="EditSignatureViewExit_Button" Content="Exit" Grid.Row="5" Grid.Column="2" Click="EditSignatureViewExit_Button_Click"/>
+        <RichTextBox x:Name="EditSignatureViewSignature_TextBox" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="3">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <Button x:Name="EditSignatureViewLoadSignature_Button" Content="Load Signature" Grid.Row="3" Grid.Column="1" Click="EditSignatureViewLoadSignature_Button_Click"/>
 
     </Grid>
 </Window>
