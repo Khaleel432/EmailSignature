@@ -77,7 +77,7 @@ namespace EmailSignature.Services
             return true;
         }
 
-        //Taken from: https://github.com/jstedfast/MailKit/blob/master/ExchangeOAuth2.md
+        // Taken from: https://github.com/jstedfast/MailKit/blob/master/ExchangeOAuth2.md
         // Application ID and Directory ID need to be retrieved from outlook to continue OAuth token flow
         static async Task<AuthenticationResult> GetPublicClientOAuth2CredentialsAsync(string protocol, string emailAddress, CancellationToken cancellationToken = default)
         {

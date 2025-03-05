@@ -1,6 +1,9 @@
 ﻿using EmailSignature.ViewModels;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace EmailSignature.Views
 {
@@ -28,9 +31,18 @@ namespace EmailSignature.Views
 
         #endregion Constructors
 
-        #region - - - - - - Events - - - - - -
+        #region - - - - - - Methods - - - - - -
 
-        #endregion Events
+        void SetRtf(RichTextBox rt, string rtfString)
+        {
+            var _Stream = new MemoryStream(Encoding.UTF8.GetBytes(rtfString));
+            Trace.WriteLine(rtfString);
+            rt.Selection.Load(_Stream, DataFormats.Rtf);
+        }
+
+        #endregion Methods
+
+        #region - - - - - - Events - - - - - -
 
         private void EditEmailViewSendEmail_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -39,7 +51,9 @@ namespace EmailSignature.Views
 
         private void EditEmailViewLoadSignature_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            var _RtfString = this.m_ViewModel.GetSignature();
+            if (!string.IsNullOrEmpty(_RtfString))
+                this.SetRtf(this.EditEmailViewEmail_RichTextBox, _RtfString);
         }
 
         private void EditEmailViewUpdateSignature_Button_Click(object sender, RoutedEventArgs e)
@@ -49,6 +63,9 @@ namespace EmailSignature.Views
             _EditSignatureView.m_ViewModel.m_Email = this.m_ViewModel.m_Email;
             _EditSignatureView.Show();
         }
+
+        #endregion Events
+
     }
 
 }
