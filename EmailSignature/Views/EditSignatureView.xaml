@@ -5,33 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmailSignature.Views"
         mc:Ignorable="d"
-        Title="EditSignatureView" Height="450" Width="800">
+        Title="EditSignatureView" Height="450" Width="800" Background="#FF09122C">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button x:Name="EditSignatureSaveChanges_Button" Content="Save Changes" Grid.Row="3" Grid.Column="2" Click="EditSignatureSaveChanges_Button_Click"/>
-        <Label x:Name="EditSignatureUserID_Label" Content="Label" Grid.Column="1" HorizontalAlignment="Center" Grid.ColumnSpan="3"/>
-        <Button x:Name="EditSignatureViewExit_Button" Content="Exit" Grid.Row="5" Grid.Column="2" Click="EditSignatureViewExit_Button_Click"/>
-        <RichTextBox x:Name="EditSignatureViewSignature_TextBox" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="3">
+        <Rectangle x:Name="EditEmailViewTitleBar_Rectangle" Fill="#FF872341" Grid.ColumnSpan="5"/>
+        <Label x:Name="EditEmailViewTitle_Label" Content="Edit Signature" FontFamily="Arial" FontSize="20" Foreground="#FFE17564"/>
+        <Label x:Name="EditSignatureUserID_Label" Content="{Binding UserID}" Grid.Column="1" HorizontalAlignment="Center" Grid.ColumnSpan="3" Foreground="#FFE17564"/>
+        <RichTextBox x:Name="EditSignatureViewSignature_TextBox" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="3">
             <FlowDocument>
                 <Paragraph>
                     <Run Text="RichTextBox"/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <Button x:Name="EditSignatureViewLoadSignature_Button" Content="Load Signature" Grid.Row="3" Grid.Column="1" Click="EditSignatureViewLoadSignature_Button_Click"/>
-
+        <Button x:Name="EditSignatureSaveChanges_Button" Content="Save Changes" Grid.Row="4" Grid.Column="2" Click="EditSignatureSaveChanges_Button_Click" Background="#FFBE3144" Foreground="#FFE17564"/>
+        <Button x:Name="EditSignatureViewExit_Button" Content="Exit" Grid.Row="5" Grid.Column="2" Click="EditSignatureViewExit_Button_Click" Background="#FFBE3144" Foreground="#FFE17564"/>
+        <Button x:Name="EditSignatureViewLoadSignature_Button" Content="Load Signature" Grid.Row="4" Grid.Column="1" Click="EditSignatureViewLoadSignature_Button_Click" Background="#FFBE3144" Foreground="#FFE17564"/>
     </Grid>
 </Window>

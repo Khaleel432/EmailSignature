@@ -5,23 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmailSignature"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Background="#FF09122C" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button x:Name="MainWindowEditSignature_Button" Content="New Signature" Grid.Row="3" Grid.Column="2" Click="MainWindowEditSignature_Button_Click"/>
-
+        <Rectangle x:Name="MainWindowTitleBar_Rectangle" Fill="#FF872341" Grid.ColumnSpan="5"/>
+        <Label x:Name="MainWindowTitle_Label" Content="Send Email" FontFamily="Arial" FontSize="20" Foreground="#FFE17564"/>
+        <Button x:Name="MainWindowEditEmail_Button" Content="New Email" Grid.Row="3" Grid.Column="2" Click="MainWindowEditEmail_Button_Click" Background="#FFBE3144" Foreground="#FFE17564" BorderBrush="{x:Null}" FontSize="20"/>
     </Grid>
 </Window>

@@ -1,6 +1,4 @@
-﻿using EmailSignature.Models;
-using EmailSignature.ViewModels;
-using Microsoft.IdentityModel.Tokens;
+﻿using EmailSignature.ViewModels;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -19,7 +17,7 @@ namespace EmailSignature.Views
 
         #region - - - - - - Fields - - - - - -
 
-        readonly EditSignatureViewModel m_ViewModel;
+        public readonly EditSignatureViewModel m_ViewModel;
 
         #endregion Fields
 
@@ -28,24 +26,10 @@ namespace EmailSignature.Views
         public EditSignatureView()
         {
             this.InitializeComponent();
-            var _NewSignature = new EditSignatureModel()
-            {
-                Signature = "Test signature string",
-                UserID = Guid.NewGuid()
-            };
-            this.m_ViewModel = new EditSignatureViewModel(_NewSignature);
-            this.UserID = _NewSignature.UserID;
-            //this.EditSignatureUserID_Label.SetBinding(ContentProperty, new Binding("UserID") { Source = this.UserID });
-            this.EditSignatureUserID_Label.Content = "UserID: " + this.UserID;
+            this.m_ViewModel = new();
         }
 
         #endregion Constructors
-
-        #region - - - - - - Properties - - - - - -
-
-        Guid UserID { get; set; }
-
-        #endregion Properties
 
         #region - - - - - - Methods - - - - - -
 
@@ -74,19 +58,18 @@ namespace EmailSignature.Views
             var _RichTextBoxSignature = this.EditSignatureViewSignature_TextBox;
             var _RtfText = this.GetRtf(_RichTextBoxSignature);
             Trace.WriteLine(_RtfText);
-            this.m_ViewModel.UpdateSignatureString(_RtfText);
-            this.m_ViewModel.UpdateSignature();
+            this.m_ViewModel.SaveSignature(_RtfText);
         }
 
         private void EditSignatureViewExit_Button_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Application.Current.Shutdown();
+            this.Close();
         }
 
         private void EditSignatureViewLoadSignature_Button_Click(object sender, RoutedEventArgs e)
         {
             var _RtfString = this.m_ViewModel.GetSignature();
-            if (!_RtfString.IsNullOrEmpty())
+            if (!string.IsNullOrEmpty(_RtfString))
                 this.SetRtf(this.EditSignatureViewSignature_TextBox, _RtfString);
 
         }

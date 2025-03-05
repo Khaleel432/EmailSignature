@@ -5,9 +5,9 @@
 
         #region - - - - - - Properties - - - - - -
 
-        public string Address;
+        public string? Address;
 
-        public string Name;
+        public string? Name;
 
         #endregion Properties
 

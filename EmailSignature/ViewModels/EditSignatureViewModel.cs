@@ -1,47 +1,50 @@
 ﻿using EmailSignature.Models;
-using EmailSignature.Services;
-using System.Diagnostics;
+using System.IO;
 
 namespace EmailSignature.ViewModels
 {
 
-    class EditSignatureViewModel
+    public class EditSignatureViewModel
     {
 
         #region - - - - - - Fields - - - - - -
 
-        private readonly EditSignatureModel m_EditSignatureModel;
-        private readonly PersistenceContext m_PersistenceContext = new();
+        public EmailModel m_Email;
 
         #endregion Fields
 
-        public EditSignatureViewModel(EditSignatureModel editSignatureModel)
-        {
-            this.m_EditSignatureModel = editSignatureModel;
-            if (this.m_PersistenceContext.Database.EnsureCreated())
-                Trace.WriteLine("Database created");
-        }
+        public EditSignatureViewModel() { }
 
         #region - - - - - - Methods - - - - - -
 
         public string GetSignature()
         {
-            var _Signature = this.m_PersistenceContext.Find<EditSignatureModel>(this.m_EditSignatureModel.UserID);
-            if (_Signature != null)
-                return _Signature.Signature;
-            return "No signature found with id: " + this.m_EditSignatureModel.UserID;
+            if (this.m_Email.Signature.Exists)
+            {
+                var _SignatureString = "";
+                using (StreamReader _SR = this.m_Email.Signature.OpenText())
+                {
+                    while ((_SignatureString = _SR.ReadLine()) != null)
+                    {
+                        return _SignatureString;
+                    }
+                }
+            }
+            return "";
         }
 
-        public void UpdateSignature()
+        public void SaveSignature(string rtfString)
         {
-            var _Signature = this.m_PersistenceContext.Find<EditSignatureModel>(this.m_EditSignatureModel.UserID);
-            if (_Signature == null)
-                this.m_PersistenceContext.Signatures.Add(this.m_EditSignatureModel);
-            this.m_PersistenceContext.SaveChanges();
+            var _SignatureString = this.m_Email.Signature;
+            if (!_SignatureString.Exists)
+            {
+                //Create a file to write to.
+                using (StreamWriter _SW = _SignatureString.CreateText())
+                {
+                    _SW.WriteLine(rtfString);
+                }
+            }
         }
-
-        public void UpdateSignatureString(string rtfSignatureString)
-            => this.m_EditSignatureModel.Signature = rtfSignatureString;
 
         #endregion Methods
 

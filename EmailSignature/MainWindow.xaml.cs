@@ -21,10 +21,10 @@ namespace EmailSignature
 
         #region - - - - - - Events - - - - - -
 
-        private void MainWindowEditSignature_Button_Click(object sender, RoutedEventArgs e)
+        private void MainWindowEditEmail_Button_Click(object sender, RoutedEventArgs e)
         {
-            var _EditSignatureView = new EditSignatureView();
-            _EditSignatureView.Show();
+            var _EditEmailView = new EditEmailView();
+            _EditEmailView.Show();
         }
 
         #endregion Events
