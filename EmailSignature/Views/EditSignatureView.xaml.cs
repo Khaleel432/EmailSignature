@@ -46,6 +46,7 @@ namespace EmailSignature.Views
         {
             rt.Document.Blocks.Clear();
             var _Stream = new MemoryStream(Encoding.UTF8.GetBytes(rtfString));
+            Trace.WriteLine(rtfString);
             rt.Selection.Load(_Stream, DataFormats.Rtf);
         }
 
@@ -57,7 +58,7 @@ namespace EmailSignature.Views
         {
             var _RichTextBoxSignature = this.EditSignatureViewSignature_TextBox;
             var _RtfText = this.GetRtf(_RichTextBoxSignature);
-            Trace.WriteLine(_RtfText);
+            //Trace.WriteLine(_RtfText);
             this.m_ViewModel.SaveSignature(_RtfText);
         }
 

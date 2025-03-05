@@ -24,10 +24,12 @@ namespace EmailSignature.ViewModels
                 var _SignatureString = "";
                 using (StreamReader _SR = this.m_Email.Signature.OpenText())
                 {
-                    while ((_SignatureString = _SR.ReadLine()) != null)
+                    string _NextFileLine = "";
+                    while ((_NextFileLine = _SR.ReadLine()) != null)
                     {
-                        return _SignatureString;
+                        _SignatureString = _SignatureString + _NextFileLine + "\n";
                     }
+                    return _SignatureString;
                 }
             }
             return "";
@@ -36,13 +38,11 @@ namespace EmailSignature.ViewModels
         public void SaveSignature(string rtfString)
         {
             var _SignatureString = this.m_Email.Signature;
-            if (!_SignatureString.Exists)
+            if (!Directory.Exists(_SignatureString.Directory.ToString()))
+                _SignatureString.Directory.Create();
+            using (StreamWriter _SW = _SignatureString.CreateText())
             {
-                //Create a file to write to.
-                using (StreamWriter _SW = _SignatureString.CreateText())
-                {
-                    _SW.WriteLine(rtfString);
-                }
+                _SW.WriteLine(rtfString);
             }
         }
 

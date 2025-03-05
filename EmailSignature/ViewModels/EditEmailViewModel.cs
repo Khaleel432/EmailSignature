@@ -20,7 +20,7 @@ namespace EmailSignature.ViewModels
             {
                 UserID = Guid.NewGuid()
             };
-            this.m_Email.Signature = new(this.m_Email.UserID.ToString());
+            this.m_Email.Signature = new("Signatures/" + this.m_Email.UserID.ToString());
         }
 
         #endregion Constructors
